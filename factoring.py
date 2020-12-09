@@ -24,7 +24,7 @@ def is_pt_smooth(b,t):
     print("{}'th prime: {}".format(t,pt))
     print("===")
     exponent,quotient=get_factor_degree(b,pt)
-    if ( quotient == 1 ):
+    if ( ( quotient == 1 ) or ( quotient < pt ) ):
         return True
     elif t == 1:
         return False
