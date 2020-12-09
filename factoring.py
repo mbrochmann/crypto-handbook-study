@@ -1,4 +1,7 @@
-# factoring.py>
+"""
+This is the "factoring" module.
+The facoring module supplies various functions used in factoring algorithms.
+"""
 
 import sympy;
 import numpy;
@@ -6,11 +9,16 @@ from sympy import *;
 
 __all__ = [ "is_pt_smooth", "get_factor_degree" ]
 
-# test by trial division whether b is pt smooth
-# if pt smooth, return the order of the factors
-# in an array from high to low (?)
-# t is the index of the prime
+def test_is_pt_smooth():
+    assert is_pt_smooth(8,1) == True
+
 def is_pt_smooth(b,t):
+    """
+    test by trial division whether b is pt smooth
+    if pt smooth, return the order of the factors
+    in an array from high to low (?)
+    t is the index of the prime
+    """
     print("is_pt_smooth")
     pt=sympy.prime(t)
     print("{}'th prime: {}".format(t,pt))
@@ -24,17 +32,17 @@ def is_pt_smooth(b,t):
         return is_pt_smooth(quotient,t-1)
 
 
-# How many times is n1 divided evenly by n2?
-#
-# If n1 does not divide n1 evenly, returns
-# tuple (0,n1).
-#
-# If n2 divides n1 evenly once more more,
-# returns tuple (exponent,quotient),
-# where quotient is the product of the factors
-# of n1 that are not n2.
-#
 def get_factor_degree(n1,n2):
+    """
+    How many times is n1 divided evenly by n2?
+    If n1 does not divide n1 evenly, returns
+    tuple (0,n1).
+    
+    If n2 divides n1 evenly once more more,
+    returns tuple (exponent,quotient),
+    where quotient is the product of the factors
+    of n1 that are not n2.
+    """
     return get_factor_degree_recursive(n1,n2)
     
     
@@ -128,3 +136,12 @@ def jacobi(a,n):
 # for now use sympy function
 def isprime(n):
     return sympy.isprime(n)
+
+
+
+
+# I kind of hate doctest as it matches the entire stdout of the function
+# rather than just the function return value!!!
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
